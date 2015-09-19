@@ -86,6 +86,7 @@ public class PanelMap {
         drawingArea.add(radioButton1);
         drawingArea.add(radioButton2);
         drawingArea.add(radioButton3);
+        drawingArea.add(radioButton4);
         drawingArea.setBorder(borderMap);
         drawingArea.setPreferredSize(boardSize);
         //radioButton1.setSize(80, 30);
