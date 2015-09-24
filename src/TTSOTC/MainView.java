@@ -23,4 +23,12 @@ public class MainView {
         mainFrame.setLayout(null);
         mainFrame.setLocationRelativeTo(null);
     }
+
+    public PanelTools getPanelTools() {
+        return panelTools;
+    }
+
+    public void setPanelTools(PanelTools panelTools) {
+        this.panelTools = panelTools;
+    }
 }

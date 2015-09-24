@@ -46,7 +46,14 @@ public class PanelMap {
             public void paint(Graphics graphics) {
                 radioButton1.setLocation(91, 110);
                 radioButton2.setLocation(171, 226);
-                radioButton3.setLocation(371, 226);
+                radioButton3.setLocation(351, 226);
+                radioButton4.setLocation(351, 386);
+                radioButton5.setLocation(171, 386);
+                radioButton6.setLocation(831, 181);
+                radioButton7.setLocation(831, 306);
+                radioButton8.setLocation(731, 306);
+                radioButton9.setLocation(651, 291);
+                radioButton10.setLocation(651, 201);
                 super.paint(graphics);
 
                 int h = 0, xx1 = 0, xx2 = 0, d = 0;
@@ -87,6 +94,12 @@ public class PanelMap {
         drawingArea.add(radioButton2);
         drawingArea.add(radioButton3);
         drawingArea.add(radioButton4);
+        drawingArea.add(radioButton5);
+        drawingArea.add(radioButton6);
+        drawingArea.add(radioButton7);
+        drawingArea.add(radioButton8);
+        drawingArea.add(radioButton9);
+        drawingArea.add(radioButton10);
         drawingArea.setBorder(borderMap);
         drawingArea.setPreferredSize(boardSize);
         //radioButton1.setSize(80, 30);
