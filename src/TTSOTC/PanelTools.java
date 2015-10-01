@@ -25,6 +25,10 @@ public class PanelTools {
         panelTools.setPreferredSize(new Dimension(300, 600));
     }
 
+    public JButton getButton() {
+        return button;
+    }
+
     public JPanel getPanelTools() {
         return panelTools;
     }
@@ -32,4 +36,6 @@ public class PanelTools {
     public JComboBox getComboBox() {
         return comboBox;
     }
+
+
 }

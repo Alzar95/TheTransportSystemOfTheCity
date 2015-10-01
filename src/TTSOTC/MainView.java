@@ -28,6 +28,10 @@ public class MainView {
         return panelTools;
     }
 
+    public PanelMap getPanelMap() {
+        return panelMap;
+    }
+
     public void setPanelTools(PanelTools panelTools) {
         this.panelTools = panelTools;
     }
