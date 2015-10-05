@@ -1,5 +1,6 @@
 package TTSOTC;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,10 +11,12 @@ import java.awt.event.ActionListener;
 public class MainController {
     private MainView mainView;
     private MainModel mainModel;
+    private JLabel imageLabel;
 
     public MainController( MainModel mainModel, MainView mainView) {
         this.mainView = mainView;
         this.mainModel = mainModel;
+        imageLabel = new JLabel(new ImageIcon("bus.png"));
         for (int i = 0; i < mainModel.getTransportList().size(); i++)
         mainView.getPanelTools().getComboBox().addItem(mainModel.getTransportList().get(i));
         mainView.getPanelTools().getButton().addActionListener(new HighlightAction());
@@ -28,6 +31,8 @@ public class MainController {
                         mainView.getPanelMap().getRadioButton4().isSelected() == false &&
                         mainView.getPanelMap().getRadioButton5().isSelected() == false)
             {
+                mainView.getPanelMap().getDrawingArea().add(mainView.getPanelMap().getImageLabel());
+                mainView.getPanelMap().getDrawingArea().revalidate();
                 mainView.getPanelMap().getRadioButton1().setSelected(true);
                 mainView.getPanelMap().getRadioButton2().setSelected(true);
                 mainView.getPanelMap().getRadioButton3().setSelected(true);
@@ -35,6 +40,8 @@ public class MainController {
                 mainView.getPanelMap().getRadioButton5().setSelected(true);
                 return;
             } else {
+                    mainView.getPanelMap().getDrawingArea().remove(mainView.getPanelMap().getImageLabel());
+                    mainView.getPanelMap().getDrawingArea().revalidate();
                     mainView.getPanelMap().getRadioButton1().setSelected(false);
                     mainView.getPanelMap().getRadioButton2().setSelected(false);
                     mainView.getPanelMap().getRadioButton3().setSelected(false);

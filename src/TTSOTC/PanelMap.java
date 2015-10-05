@@ -3,11 +3,13 @@ package TTSOTC;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by user on 12.09.2015.
  */
-public class PanelMap {
+public class PanelMap implements Runnable {
     private JPanel drawingArea;
     private Border borderMap;
     private JRadioButton radioButton1;
@@ -30,11 +32,14 @@ public class PanelMap {
     private JRadioButton radioButton18;
     private JRadioButton radioButton19;
     private JRadioButton radioButton20;
-    private int x1, x2, y1, y2;
+    private Timer timer;
+    private JLabel imageLabel;
+    private int x1, x2, y1, y2, xx, yy;
 
-    public PanelMap() {
+    public PanelMap()  {
         Dimension boardSize = new Dimension(1000, 600);
         borderMap = BorderFactory.createTitledBorder("Map");
+        imageLabel = new JLabel(new ImageIcon("bus.png"));
         radioButton1 = new JRadioButton("A1");
         radioButton2 = new JRadioButton("A2");
         radioButton3 = new JRadioButton("A3");
@@ -59,8 +64,10 @@ public class PanelMap {
         x2 = 10;
         y1 = 20;
         y2 = 20;
+        xx = 80;
+        yy = 117;
 
-
+        (new Thread(this)).start();
 
         drawingArea = new JPanel() {
             public void paint(Graphics graphics) {
@@ -84,6 +91,8 @@ public class PanelMap {
                 radioButton18.setLocation(511, 501);
                 radioButton19.setLocation(491, 386);
                 radioButton20.setLocation(491, 261);
+
+                imageLabel.setLocation(xx, yy);
                 super.paint(graphics);
 
                 int h = 0, xx1 = 0, xx2 = 0, d = 0;
@@ -114,7 +123,7 @@ public class PanelMap {
                     yy2 += 70;
                     l = 0;
                }
-
+               // graphics.drawRect(85, 105, 5, 5);
 
             }
         };
@@ -140,12 +149,19 @@ public class PanelMap {
         drawingArea.add(radioButton18);
         drawingArea.add(radioButton19);
         drawingArea.add(radioButton20);
+        //drawingArea.add(imageLabel);
         drawingArea.setBorder(borderMap);
         drawingArea.setPreferredSize(boardSize);
         //radioButton1.setSize(80, 30);
         //radioButton1.setLocation(20, 20);
 
     }
+
+    public JLabel getImageLabel() {
+        return imageLabel;
+    }
+
+
 
     public JRadioButton getRadioButton1() {
         return radioButton1;
@@ -229,5 +245,59 @@ public class PanelMap {
 
     public JPanel getDrawingArea() {
         return drawingArea;
+    }
+
+
+
+    @Override
+    public void run() {
+                while (true)
+
+                    try {
+                        if (xx == 80 && yy > 90) {
+                            if (xx == 80 && yy == 117) {
+                                Thread.sleep(3000);
+                            }
+                            imageLabel.setLocation(xx, yy--);
+                            Thread.sleep(10);
+                        }
+                        if (xx < 161 && yy == 90 ) {
+                            imageLabel.setLocation(xx++, yy);
+                            Thread.sleep(10);
+                        }
+                        if (xx == 160  && yy < 251) {
+                            if (xx == 160 && yy == 234) {
+                                Thread.sleep(3000);
+                            }
+                            imageLabel.setLocation(xx, yy++);
+                            Thread.sleep(10);
+                        }
+                        if (xx < 401 && xx != 80 && yy == 251) {
+                            if (xx == 357 && yy == 251) {
+                                Thread.sleep(3000);
+                            }
+                            imageLabel.setLocation(xx++, yy);
+                            Thread.sleep(10);
+                        }
+
+                        if (xx == 401 && yy < 411) {
+                            imageLabel.setLocation(xx, yy++);
+                            Thread.sleep(10);
+                        }
+
+                        if (xx > 80 && yy == 411) {
+                            if (xx == 355 && yy == 411) {
+                                Thread.sleep(3000);
+                            }
+                            if (xx == 175 && yy == 411) {
+                                Thread.sleep(3000);
+                            }
+                            imageLabel.setLocation(xx--, yy);
+                            Thread.sleep(10);
+                        }
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
     }
 }
