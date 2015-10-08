@@ -2,6 +2,7 @@ package TTSOTC;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
 /**
  * Created by user on 12.09.2015.
@@ -32,7 +33,4 @@ public class MainView {
         return panelMap;
     }
 
-    public void setPanelTools(PanelTools panelTools) {
-        this.panelTools = panelTools;
-    }
 }

@@ -8,9 +8,13 @@ import java.util.List;
  */
 public class MainModel {
     private List transport;
+    private List listRB;
+    private List listTime;
 
     public MainModel() {
         transport = new ArrayList();
+        listRB = new ArrayList();
+        listTime = new ArrayList();
         transport.add("BusA");
         transport.add("BusB");
         transport.add("BusC");
@@ -21,5 +25,13 @@ public class MainModel {
 
     public List getTransportList() {
         return transport;
+    }
+
+    public List getListRB() {
+        return listRB;
+    }
+
+    public List getListTime() {
+        return listTime;
     }
 }

@@ -5,11 +5,13 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.Timer;
 
 /**
  * Created by user on 12.09.2015.
  */
-public class PanelMap implements Runnable {
+public class PanelMap   {
     private JPanel drawingArea;
     private Border borderMap;
     private JRadioButton radioButton1;
@@ -32,14 +34,27 @@ public class PanelMap implements Runnable {
     private JRadioButton radioButton18;
     private JRadioButton radioButton19;
     private JRadioButton radioButton20;
+    private int time;
+    private JLabel imageBusA;
+    private JLabel imageBusB;
+    private JLabel imageBusC;
+    private JLabel imageBusD;
+    private JLabel imageTrolleybusOne;
+    private JLabel imageTrolleybusTwo;
+    private Thread busAT;
+    private Thread busBT;
     private Timer timer;
-    private JLabel imageLabel;
-    private int x1, x2, y1, y2, xx, yy;
+    private int x1, x2, y1, y2, xx, yy, xB, yB, xC, yC, xU, yU, xO, yO, xT, yT;
 
     public PanelMap()  {
         Dimension boardSize = new Dimension(1000, 600);
         borderMap = BorderFactory.createTitledBorder("Map");
-        imageLabel = new JLabel(new ImageIcon("bus.png"));
+        imageBusA = new JLabel(new ImageIcon("bus.png"));
+        imageBusB = new JLabel(new ImageIcon("busB.png"));
+        imageBusC = new JLabel(new ImageIcon("busC.png"));
+        imageBusD = new JLabel(new ImageIcon("BusD.png"));
+        imageTrolleybusOne = new JLabel(new ImageIcon("TrolleybusOne.png"));
+        imageTrolleybusTwo = new JLabel(new ImageIcon("TrolleybusTwo.png"));
         radioButton1 = new JRadioButton("A1");
         radioButton2 = new JRadioButton("A2");
         radioButton3 = new JRadioButton("A3");
@@ -60,14 +75,27 @@ public class PanelMap implements Runnable {
         radioButton18 = new JRadioButton("U3");
         radioButton19 = new JRadioButton("U4");
         radioButton20 = new JRadioButton("U5");
+        timer = new Timer();
+        //busAT = new Thread(this);
+        //busBT = new Thread(this);
         x1 = 10;
         x2 = 10;
         y1 = 20;
         y2 = 20;
         xx = 80;
         yy = 117;
+        xB = 836;
+        yB = 171;
+        xC = 185;
+        yC = 90;
+        xU = 836;
+        yU = 410;
 
-        (new Thread(this)).start();
+
+       // (new Thread(this)).start();
+        myThread.start();
+        twoThread.start();
+        threeThread.start();
 
         drawingArea = new JPanel() {
             public void paint(Graphics graphics) {
@@ -92,7 +120,10 @@ public class PanelMap implements Runnable {
                 radioButton19.setLocation(491, 386);
                 radioButton20.setLocation(491, 261);
 
-                imageLabel.setLocation(xx, yy);
+                imageBusA.setLocation(xx, yy);
+                imageBusB.setLocation(xB, yB);
+                imageBusC.setLocation(xC, yC);
+                imageBusD.setLocation(xU, yU);
                 super.paint(graphics);
 
                 int h = 0, xx1 = 0, xx2 = 0, d = 0;
@@ -123,8 +154,6 @@ public class PanelMap implements Runnable {
                     yy2 += 70;
                     l = 0;
                }
-               // graphics.drawRect(85, 105, 5, 5);
-
             }
         };
 
@@ -157,11 +186,31 @@ public class PanelMap implements Runnable {
 
     }
 
+
+
     public JLabel getImageLabel() {
-        return imageLabel;
+        return imageBusA;
     }
 
+    public JLabel getImageBusB() {
+        return imageBusB;
+    }
 
+    public JLabel getImageBusC() {
+        return imageBusC;
+    }
+
+    public JLabel getImageBusD() {
+        return imageBusD;
+    }
+
+    public JLabel getImageTrolleybusOne() {
+        return imageTrolleybusOne;
+    }
+
+    public JLabel getImageTrolleybusTwo() {
+        return imageTrolleybusTwo;
+    }
 
     public JRadioButton getRadioButton1() {
         return radioButton1;
@@ -248,56 +297,123 @@ public class PanelMap implements Runnable {
     }
 
 
-
-    @Override
-    public void run() {
-                while (true)
-
-                    try {
-                        if (xx == 80 && yy > 90) {
-                            if (xx == 80 && yy == 117) {
-                                Thread.sleep(3000);
+    Thread myThread = new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        try {
+                            if (xx == 80 && yy > 90) {
+                                if (xx == 80 && yy == 117) {
+                                     Thread.sleep(3000);
+                                }
+                                imageBusA.setLocation(xx, yy--);
+                                Thread.sleep(10);
                             }
-                            imageLabel.setLocation(xx, yy--);
-                            Thread.sleep(10);
-                        }
-                        if (xx < 161 && yy == 90 ) {
-                            imageLabel.setLocation(xx++, yy);
-                            Thread.sleep(10);
-                        }
-                        if (xx == 160  && yy < 251) {
-                            if (xx == 160 && yy == 234) {
-                                Thread.sleep(3000);
+                            if (xx < 161 && yy == 90) {
+                                imageBusA.setLocation(xx++, yy);
+                                Thread.sleep(10);
                             }
-                            imageLabel.setLocation(xx, yy++);
-                            Thread.sleep(10);
-                        }
-                        if (xx < 401 && xx != 80 && yy == 251) {
-                            if (xx == 357 && yy == 251) {
-                                Thread.sleep(3000);
+                            if (xx == 160 && yy < 251) {
+                                if (xx == 160 && yy == 234) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusA.setLocation(xx, yy++);
+                                Thread.sleep(10);
                             }
-                            imageLabel.setLocation(xx++, yy);
-                            Thread.sleep(10);
-                        }
+                            if (xx < 401 && xx != 80 && yy == 251) {
+                                if (xx == 357 && yy == 251) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusA.setLocation(xx++, yy);
+                                Thread.sleep(10);
+                            }
 
-                        if (xx == 401 && yy < 411) {
-                            imageLabel.setLocation(xx, yy++);
-                            Thread.sleep(10);
-                        }
-
-                        if (xx > 80 && yy == 411) {
-                            if (xx == 355 && yy == 411) {
-                                Thread.sleep(3000);
+                            if (xx == 401 && yy < 411) {
+                                imageBusA.setLocation(xx, yy++);
+                                Thread.sleep(10);
                             }
-                            if (xx == 175 && yy == 411) {
-                                Thread.sleep(3000);
+                            if (xx > 80 && yy == 411) {
+                                if (xx == 355 && yy == 411) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xx == 175 && yy == 411) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusA.setLocation(xx--, yy);
+                                Thread.sleep(10);
                             }
-                            imageLabel.setLocation(xx--, yy);
-                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
+                }
+            });
 
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+    Thread twoThread = new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        try {
+                            if (xB < 880 && yB == 171) {
+                                imageBusB.setLocation(xB++, yB);
+                                Thread.sleep(10);
+                            }
+                            if (xB == 880 && yB < 330) {
+                                imageBusB.setLocation(xB, yB++);
+                                Thread.sleep(10);
+                            }
+                            if (xB > 640 && yB == 330) {
+                                imageBusB.setLocation(xB--, yB);
+                                Thread.sleep(10);
+                            }
+                            if (xB == 640 && yB > 171) {
+                                imageBusB.setLocation(xB, yB--);
+                                Thread.sleep(10);
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+    );
+
+    Thread threeThread = new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        try {
+                            if (xC < 881 && yC == 90) {
+                                imageBusC.setLocation(xC++, yC);
+                                Thread.sleep(10);
+                            }
+                            if (xC == 881 && yC < 170) {
+                                imageBusC.setLocation(xC, yC++);
+                                Thread.sleep(10);
+                            }
+                            if (xC > 160 && yC == 170) {
+                                imageBusC.setLocation(xC--, yC);
+                                Thread.sleep(10);
+                            }
+                            if (xC == 160 && yC > 90) {
+                                imageBusC.setLocation(xC, yC--);
+                                Thread.sleep(10);
+                            }
+                        }
+                            catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                }
+            }
+                );
+
+
+
+    public int getTime() {
+        return time;
     }
+
+
+
 }
