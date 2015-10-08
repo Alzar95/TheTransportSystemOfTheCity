@@ -19,8 +19,6 @@ public class MainModel {
         transport.add("BusB");
         transport.add("BusC");
         transport.add("BusD");
-        transport.add("TrolleybusOne");
-        transport.add("TrolleybusTwo");
 }
 
     public List getTransportList() {

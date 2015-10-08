@@ -16,7 +16,7 @@ public class PanelTools extends JLabel {
     private JComboBox comboBox;
     private JTable table;
     private DefaultTableModel model;
-    private JScrollPane tablePane;
+    //private JScrollPane tablePane;
     private JButton button;
     private JLabel pT;
     private volatile int time, t1, t2, t3, t4, t5;
@@ -24,8 +24,8 @@ public class PanelTools extends JLabel {
     public PanelTools() {
         panelTools = new JPanel();
         model = new DefaultTableModel();
-        table = new JTable(model);
-        tablePane = new JScrollPane(table);
+        //table = new JTable(model);
+       // tablePane = new JScrollPane(table);
         borderTools = BorderFactory.createTitledBorder("Tools");
         comboBox = new JComboBox();
         time = -1;
@@ -38,15 +38,15 @@ public class PanelTools extends JLabel {
         panelTools.setBorder(borderTools);
         panelTools.add(comboBox);
         panelTools.add(button);
-        panelTools.add(tablePane, BorderLayout.NORTH);
+        //panelTools.add(tablePane, BorderLayout.NORTH);
         pT = new PanelTools(new Timer());
         pT.setFont(new Font(pT.getFont().getFontName(), pT.getFont().getStyle(), 36));
         panelTools.add(pT);
-        model.addColumn("Остановка");
-        model.addColumn("Отправление");
-        model.addColumn("Прибытие");
+        //model.addColumn("Остановка");
+        //model.addColumn("Отправление");
+        //model.addColumn("Прибытие");
 
-        tablePane.setPreferredSize(new Dimension(250, 103));
+       // tablePane.setPreferredSize(new Dimension(250, 103));
         panelTools.setPreferredSize(new Dimension(300, 600));
     }
 

@@ -34,17 +34,14 @@ public class PanelMap   {
     private JRadioButton radioButton18;
     private JRadioButton radioButton19;
     private JRadioButton radioButton20;
-    private int time;
+
     private JLabel imageBusA;
     private JLabel imageBusB;
     private JLabel imageBusC;
     private JLabel imageBusD;
-    private JLabel imageTrolleybusOne;
-    private JLabel imageTrolleybusTwo;
-    private Thread busAT;
-    private Thread busBT;
+
     private Timer timer;
-    private int x1, x2, y1, y2, xx, yy, xB, yB, xC, yC, xU, yU, xO, yO, xT, yT;
+    private int x1, x2, y1, y2, xx, yy, xB, yB, xC, yC, xU, yU;
 
     public PanelMap()  {
         Dimension boardSize = new Dimension(1000, 600);
@@ -53,8 +50,6 @@ public class PanelMap   {
         imageBusB = new JLabel(new ImageIcon("busB.png"));
         imageBusC = new JLabel(new ImageIcon("busC.png"));
         imageBusD = new JLabel(new ImageIcon("BusD.png"));
-        imageTrolleybusOne = new JLabel(new ImageIcon("TrolleybusOne.png"));
-        imageTrolleybusTwo = new JLabel(new ImageIcon("TrolleybusTwo.png"));
         radioButton1 = new JRadioButton("A1");
         radioButton2 = new JRadioButton("A2");
         radioButton3 = new JRadioButton("A3");
@@ -76,8 +71,6 @@ public class PanelMap   {
         radioButton19 = new JRadioButton("U4");
         radioButton20 = new JRadioButton("U5");
         timer = new Timer();
-        //busAT = new Thread(this);
-        //busBT = new Thread(this);
         x1 = 10;
         x2 = 10;
         y1 = 20;
@@ -96,6 +89,7 @@ public class PanelMap   {
         myThread.start();
         twoThread.start();
         threeThread.start();
+        fourThread.start();
 
         drawingArea = new JPanel() {
             public void paint(Graphics graphics) {
@@ -204,13 +198,6 @@ public class PanelMap   {
         return imageBusD;
     }
 
-    public JLabel getImageTrolleybusOne() {
-        return imageTrolleybusOne;
-    }
-
-    public JLabel getImageTrolleybusTwo() {
-        return imageTrolleybusTwo;
-    }
 
     public JRadioButton getRadioButton1() {
         return radioButton1;
@@ -356,6 +343,9 @@ public class PanelMap   {
                     while (true)
                         try {
                             if (xB < 880 && yB == 171) {
+                                if (xB == 836 && yB == 171) {
+                                    Thread.sleep(3000);
+                                }
                                 imageBusB.setLocation(xB++, yB);
                                 Thread.sleep(10);
                             }
@@ -364,10 +354,22 @@ public class PanelMap   {
                                 Thread.sleep(10);
                             }
                             if (xB > 640 && yB == 330) {
+                                if (xB == 735 && yB == 330) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xB == 836 && yB == 330) {
+                                    Thread.sleep(3000);
+                                }
                                 imageBusB.setLocation(xB--, yB);
                                 Thread.sleep(10);
                             }
                             if (xB == 640 && yB > 171) {
+                                if (xB == 640 && yB == 298) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xB == 640 && yB == 207) {
+                                    Thread.sleep(3000);
+                                }
                                 imageBusB.setLocation(xB, yB--);
                                 Thread.sleep(10);
                             }
@@ -385,6 +387,21 @@ public class PanelMap   {
                     while (true)
                         try {
                             if (xC < 881 && yC == 90) {
+                                if (xC == 836 && yC == 90) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xC == 666 && yC == 90) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xC == 516 && yC == 90) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xC == 356 && yC == 90) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xC == 185 && yC == 90) {
+                                    Thread.sleep(3000);
+                                }
                                 imageBusC.setLocation(xC++, yC);
                                 Thread.sleep(10);
                             }
@@ -408,11 +425,60 @@ public class PanelMap   {
             }
                 );
 
+    Thread fourThread = new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    while (true)
+                        try {
+                            if (xU > 640 && yU == 410) {
+                                if (xU == 836 && yU == 410) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusD.setLocation(xU--, yU);
+                                Thread.sleep(10);
+                            }
+                            if (xU == 640 && yU != 250 && yU < 490) {
+                                if (xU == 640 && yU == 428) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusD.setLocation(xU, yU++);
+                                Thread.sleep(10);
+                            }
+                            if (xU > 480 && yU == 490) {
+                                if (xU == 516 && yU == 490) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusD.setLocation(xU--, yU);
+                                Thread.sleep(10);
+                            }
+                            if (xU == 480 && yU > 250) {
+                                if (xU == 480 && yU == 267) {
+                                    Thread.sleep(3000);
+                                }
+                                if (xU == 480 && yU == 393) {
+                                    Thread.sleep(3000);
+                                }
+                                imageBusD.setLocation(xU, yU--);
+                                Thread.sleep(10);
+                            }
+                            if (xU < 880 && yU == 250) {
+                                imageBusD.setLocation(xU++, yU);
+                                Thread.sleep(10);
+                            }
+                            if (xU == 880 && yU < 410) {
+                                imageBusD.setLocation(xU, yU++);
+                                Thread.sleep(10);
+                            }
+                        }
+                        catch(InterruptedException e){
+                            e.printStackTrace();
+                        }
+                }
+            }
+    );
 
-
-    public int getTime() {
-        return time;
-    }
+    
 
 
 
